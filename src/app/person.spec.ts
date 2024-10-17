@@ -28,10 +28,18 @@ describe('Person', () => {
         person.setListaFotos(foto4);
     });
 
+    // Nombre de la prueba: La instancia de persona es creada correctamente
+    // Objetivo: Verificar que la instancia de la clase Person se crea correctamente.
+    // Datos de prueba: Ninguno.
+    // Resultado esperado: La instancia de Person debe ser creada correctamente.
     it('La instancia de persona es creada correctamente', () => {
         expect(person).toBeTruthy();
     });
 
+    // Nombre de la prueba: Etiquetar en una foto existente
+    // Objetivo: Verificar que se puede etiquetar una persona en una foto existente.
+    // Datos de prueba: nombreFichero = 'foto1.jpg', etiquetaPerson = new Person("juan@gmail.com", "Juan", "Apellido1", "Apellido2", "1234", "sexo")
+    // Resultado esperado: El método setEtiqueta debe ser llamado una vez con el objeto etiquetaPerson para que la persona sea etiquetada en la foto.
     it('Etiquetar en una foto existente', () => {
         const etiquetaPerson = new Person("juan@gmail.com", "Juan", "Apellido1", "Apellido2", "1234", "sexo");
 
@@ -42,6 +50,10 @@ describe('Person', () => {
         verify(mockedFoto.setEtiqueta(etiquetaPerson)).once();
     });
 
+    // Nombre de la prueba: Etiquetar en una foto que no existe
+    // Objetivo: Verificar que no se puede etiquetar una persona en una foto que no existe.
+    // Datos de prueba: nombreFichero = 'foto1.jpg', etiquetaPerson = new Person("juan@gmail.com", "Juan", "Apellido1", "Apellido2", "1234", "sexo")
+    // Resultado esperado: Debe lanzar un error con el mensaje "La foto no existe".
     it('Etiquetar en una foto que no existe', () => {
         const etiquetaPerson = new Person("juan@gmail.com", "Juan", "Apellido1", "Apellido2", "1234", "sexo");
         when(mockedFoto.buscarFoto(nombreFichero)).thenReturn("");
@@ -51,6 +63,10 @@ describe('Person', () => {
         }).toThrowError("La foto no existe");
     });
 
+    // Nombre de la prueba: Ver etiquetas de una foto existente
+    // Objetivo: Verificar que se pueden ver las etiquetas de una foto existente.
+    // Datos de prueba: nombreFichero = 'foto1.jpg', etiquetas = [etiquetaPerson1, etiquetaPerson2]
+    // Resultado esperado: Debe devolver una cadena con los nombres y apellidos de las personas etiquetadas.
     it('Ver etiquetas de una foto existente', () => {
         const etiquetaPerson1 = new Person("juan@gmail.com", "Juan", "Apellido1", "Apellido2", "1234", "sexo");
         const etiquetaPerson2 = new Person("maria@gmail.com", "Maria", "Apellido1", "Apellido2", "5678", "sexo");
@@ -59,7 +75,7 @@ describe('Person', () => {
         when(mockedFoto.buscarFoto(nombreFichero)).thenReturn(nombreFichero);
         when(mockedFoto.getNombreFichero()).thenReturn(nombreFichero);
         when(mockedFoto.getEtiqueta()).thenReturn(etiquetas);
-        
+
         expect(person.verEtiquetas(nombreFichero)).toBe("Juan Apellido1\nMaria Apellido1\n");
     });
 
