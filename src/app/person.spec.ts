@@ -82,4 +82,20 @@ describe('Person', () => {
         expect(person.verEtiquetas(nombreFichero)).toBe("Juan Apellido1\nMaria Apellido1\n");
     });
 
+    // Nombre de la prueba: Ver etiquetas de una foto no existente
+    // Objetivo: Verificar que no se puede ver la etiqueta de una foto que no existe.
+    // Datos de prueba: nombreFichero = 'foto1.jpg'
+    // Resultado esperado: Debe lanzar un error con el mensaje "La foto no existe".
+    it('Ver etiquetas de una foto no existente', () => {
+        
+        when(mockedFoto.buscarFoto(nombreFichero)).thenReturn("");
+
+        expect(() => {
+            person.verEtiquetas(nombreFichero);
+        }).toThrowError("La foto no existe");
+        
+
+    });
+
+
 });
