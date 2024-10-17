@@ -1,7 +1,6 @@
 import { Person } from './person';
 import {Foto} from './foto';
-import { mock, when, instance, verify } from 'ts-mockito';
-import e from 'express';
+import { mock, when, instance, verify, reset } from 'ts-mockito';
 
 describe('Person', () => {
     let nombreFichero: string;
@@ -11,7 +10,7 @@ describe('Person', () => {
     let foto2 = instance(mockedFoto);
     let foto3 = instance(mockedFoto);
     let foto4 = instance(mockedFoto);
-
+    
     beforeEach(() => {
         nombreFichero = 'foto1.jpg';
         person = new Person("pepe@gmail.com", "Pepe", "Apellido1", "Apellido2", "1234", "sexo");
@@ -26,6 +25,10 @@ describe('Person', () => {
         person.setListaFotos(foto2);
         person.setListaFotos(foto3);
         person.setListaFotos(foto4);
+    });
+
+    afterEach(() => {
+        reset(mockedFoto);
     });
 
     // Nombre de la prueba: La instancia de persona es creada correctamente
