@@ -161,6 +161,7 @@ export class Person {
         }
     }
 
+    // Función usada
     public etiquetarFoto(nombreFichero:string, p:Person):void{
         for (var i = 0; i < this.getListaFotos().length; i++) {
             var f = this.getListaFotos()[i];
@@ -176,6 +177,7 @@ export class Person {
         }
     }
     
+    // Función usada
     public verEtiquetas(nombreFichero:string):string{
         var resultado = "";
         for (var i = 0; i < this.getListaFotos().length; i++) {
