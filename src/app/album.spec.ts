@@ -44,9 +44,9 @@ describe('Album', () => {
     });
 
     // Nombre de la prueba: Imprimir álbum con fotos con y sin url correctamente
-    // Objetivo: Verificar que se el albun esta vacio imprima un error
+    // Objetivo: Verificar que si alguna foto no la encuentra se muestre un espacio vacio 
     // Datos de prueba: Una foto con url valido 'url' y otra sin url valido, por lo tanto ya no existe la foto ".
-    // Resultado esperado: Debe devolver una cadena con las URL y una vacia sin de las fotos.
+    // Resultado esperado: Debe devolver una cadena con las URL y un espacio vacio en el caso de que la foto no se encontro.
     it('Álbum con fotos con y sin url validos', () => {
         when(mockedFoto1.buscarFoto()).thenReturn("url1");
         when(mockedFoto2.buscarFoto()).thenReturn("");
