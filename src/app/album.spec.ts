@@ -42,4 +42,18 @@ describe('Album', () => {
         album.setListaFotos(foto2);
         expect(album.imprimirFotosAlbum()).toBe("La url es: url1\nLa url es: url2\n");
     });
+
+    // Nombre de la prueba: Imprimir álbum con fotos con y sin url correctamente
+    // Objetivo: Verificar que se el albun esta vacio imprima un error
+    // Datos de prueba: Una foto con url valido 'url' y otra sin url valido, por lo tanto ya no existe la foto ".
+    // Resultado esperado: Debe devolver una cadena con las URL y una vacia sin de las fotos.
+    it('Álbum con fotos con y sin url validos', () => {
+        when(mockedFoto1.buscarFoto()).thenReturn("url1");
+        when(mockedFoto2.buscarFoto()).thenReturn("");
+
+        album.setListaFotos(foto1);
+        album.setListaFotos(foto2);
+        expect(album.imprimirFotosAlbum()).toBe("La url es: url1\nLa url es: \n");
+    });
+
 });
